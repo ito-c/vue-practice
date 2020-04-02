@@ -1,0 +1,38 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Hello vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+
+    <!-- v-bind -->
+    <p>
+        <a v-bind:href="url" target="_blank">vuejs</a>
+    </p>
+
+    <!-- v-if -->
+    <p v-if=toggle>
+        <a v-bind:href="url" target="_blank">vuejs toggle</a>
+    </p>
+
+    <!-- v-for -->
+    <li v-for="value in languages">{{ value }}</li>
+    
+    <!-- v-on -->
+    <button v-on:click="onclick">
+        click!
+    </button>
+    
+    <!-- 双方向バインディング -->
+    <input type="text" v-model="message">
+</div>
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- vueファイル -->
+<script src="js/main.js"></script>
+</body>
+</html>
