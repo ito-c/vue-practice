@@ -1,0 +1,142 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Hello vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="once">
+    <h2>v-once</h2>
+    <p v-once>
+        {{ message }}
+    </p>
+    <button v-on:click="clickHandler">
+        click!
+    </button><br>
+    // 初回のみテンプレートを評価し、その後静的表示
+    <hr>
+</div>
+
+<div id="pre">
+    <h2>v-pre</h2>
+    <p v-pre>
+        {{ message }}
+    </p>
+    // ・生のmustacheタグ表示<br>
+    // ・XSS対策<br>
+    // ・ディレクティブのない大量のノードをスキップすることでコンパイルスピードUP
+    <hr>
+</div>
+
+<div id="html">
+    <h2>v-html</h2>
+    <p v-html>
+        {{ message }}
+    </p>
+    <p v-html="message">
+    </p>
+    // タグをテキストではなくHTMLとして評価するディレクティブ<br>
+    // XSS脆弱性から、慎重に使用<br>
+    // ユーザーが入力したコンテンツには使用しない
+    <hr>
+</div>
+
+<div id="cloak">
+    <h2>v-cloak</h2>
+    <p v-cloak>
+        {{ message }}
+    </p>
+    // コンパイル終了まで非表示(v-cloakをセレクタとしてCSSでnone)
+    // 内部的なコードが見えることを防ぐ
+    <hr>
+</div>
+
+<div id="text">
+    <h2>v-text</h2>
+    <p v-text="message"></p>
+    // マスタッシュの代わりにv-textが使える<br>
+    // 基本的にはマスタッシュを使う<br>
+    <hr>
+</div>
+
+<h2>バインディング式</h2>
+<div id="js">
+    // javascript式
+    <p>
+        {{ message }}
+    </p>
+    <p>
+        {{ number + 1 }}
+    </p>
+    <p>
+        {{ message.split('').reverse().join('') }}
+    </p>
+    // 三項演算子
+    <p>
+        {{ ok ? 'Yes' : 'No' }}
+    </p>
+    <p>
+        <!-- {{ var x = 1 }} 動作しない 式ではなく文となる -->
+        <!-- {{ if(ok) { return message} }} フロー制御は動作しない-->
+        // 各バインディングは単一式のみ含むことができる<br>
+        // 式はJS構文の中で変数に代入する時を考える。＝の右側に記述できるものが式<br><br>
+
+
+        //フロー制御は三項演算子<br>
+        {{ ok ? message : '' }}
+    </p>
+
+    <hr>
+</div>
+
+<div id="price">
+    <h2>ローカルフィルター、グローバルフィルター</h2>
+    <h3>mustache</h3>
+    <p>
+        {{ price | numberFormat }}
+    </p>
+    <h3>v-bind</h3>
+    <input type="text" v-bind:value="price | numberFormat">
+    <p>// | でフィルター使用、グローバルもローカルも同様<br>
+    // グローバルはvueインスタンス前に記述する
+    </p>
+    <hr>
+</div>
+
+<div id="filters">
+    <h2>フィルターの連結</h2>
+    <p>
+        {{ jpyPrice | toUSD | numberFormat }}
+    </p>
+    <hr>
+</div>
+
+
+<div id="filterArg">
+    <h2>フィルターの引数</h2>
+    <p>
+        {{ text | readMore(50, '........' ) }}
+    </p>
+    <p>
+        {{ text | readMore(10, '****' ) }}
+    </p>
+    <p>// textは1つ目のフィルターから自動的に設定されるため記述不要</p>
+    <hr>
+</div>
+
+
+<div id="bindRyaku">
+    <h2>v-bindディレクティブの省略</h2>
+    <a v-bind:href="url" target="_blank">link1</a>
+    <a :href="url" target="_blank">link2</a>
+    <p>// v-bind:href or :href</p>
+    <hr>
+</div>
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- vueファイル -->
+<script src="js/main.js"></script>
+</body>
+</html>
