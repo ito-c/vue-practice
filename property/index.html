@@ -1,0 +1,59 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Hello vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div id="app">
+    <h2>算出プロパティ</h2>
+    <p>
+        {{ message.split('').reverse().join('') }}
+    </p>
+    <p v-pre>// {{ message.split('').reverse().join('') }}<br> -> mustacheに式は使用できるが、可読性、使い回しに優れない</p>
+    <p>->main.js に computed:で算出プロパティ作成</p>
+    <p>{{ reversedMessage }}</p>
+    <hr>
+</div>
+
+<div id="property">
+    <h2>算出プロパティとメソッドの違い1</h2>
+    <p>computed ・・・ プロパティ ()不要,getter,setter,キャッシュされる</p>
+    <p>methods ・・・ メソッド ()必要,getter,キャッシュされない（呼び出される度に実行される）</p>
+    <hr>
+
+    <h2>算出プロパティとメソッドの違い2 getter,setter</h2>
+    <p>
+        base price: <input type="text" v-model='basePrice'>
+    </p>
+    <p>
+        tax included price: <input type="text" v-model='taxIncludedPrice'>
+        <!-- v-modelには算出プロパティも可能、引数として渡す -->
+    </p>
+    <hr>
+</div>
+
+<div id="cache">
+    <h2>算出プロパティとメソッドの違い3 キャッシュ</h2>
+    <h3>computed（算出プロパティ）</h3>
+        <ol>
+            <li>{{ computedNumber }}</li>
+            <li>{{ computedNumber }}</li>
+            <li>{{ computedNumber }}</li>
+        </ol>
+    <h3>methods（メソッド）</h3>
+        <ol>
+            <li>{{ methodsNumber() }}</li>
+            <li>{{ methodsNumber() }}</li>
+            <li>{{ methodsNumber() }}</li>
+        </ol>
+    <hr>
+</div>
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- vueファイル -->
+<script src="js/main.js"></script>
+</body>
+</html>
