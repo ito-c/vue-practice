@@ -1,0 +1,73 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Hello vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>監視プロパティ</h1>
+<div id="basic">
+    <h2>基本</h2>
+    <p>
+        {{ message }}
+    </p>
+    <p>
+        <input type="text" v-model="message">
+    </p>
+    <pre>{{ $data }}</pre>
+    <hr>
+</div>
+
+<div id="tanni">
+    <h2>単位計算アプリ</h2>
+    <p>
+        km:<input type="text" v-model="km">
+    </p>
+    <p>
+        m:<input type="text" v-model="m">
+    </p>
+    <p>
+        mm:<input type="text" v-model='mm'>
+    </p>
+    <pre>{{ $data }}</pre>
+    <hr>
+</div>
+
+<h2>算出プロパティ vs 監視プロパティ</h2>
+<p>// 同じ処理ができる場合、算出プロパティの方がコードが少なく見やすい</p>
+<div id="vsProperty">
+    <h2>監視プロパティ</h2>
+    <p>
+        名前:<input type="text" v-model="firstName">
+    </p>
+    <p>
+        名字:<input type="text" v-model="lastName">
+    </p>
+    <p>
+        フルネーム:{{ fullName }}
+    </p>
+    <pre>{{ $data }}</pre>
+</div>
+
+<div id="vsPropertyy">
+    <h2>算出プロパティ</h2>
+    <p>
+        名前:<input type="text" v-model="firstName">
+    </p>
+    <p>
+        名字:<input type="text" v-model="lastName">
+    </p>
+    <p>
+        フルネーム:{{ fullName }}
+    </p>
+    <pre>{{ $data }}</pre>
+    <hr>
+</div>
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- vueファイル -->
+<script src="js/main.js"></script>
+</body>
+</html>
