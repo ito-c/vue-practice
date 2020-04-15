@@ -71,3 +71,26 @@ new Vue({
         }
     }
 })
+
+
+// deepオプション
+var deep = new Vue({
+    el: '#deep',
+    data: {
+        colors: [
+            { name: 'Reed' },
+            { name: 'Green' },
+            { name: 'Blue' }
+        ]
+    },
+    watch: {
+        colors: {
+            // コンソールで値を変更するとhandlerが呼ばれる
+            handler: function(newValue, oldValue) {
+                console.log('Update!!')
+            },
+            // falseにするとネストされた値の変更は監視されない＝Update!!表示されない
+            deep: false // deepオプション
+        }
+    }
+})
