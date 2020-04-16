@@ -85,12 +85,16 @@ var deep = new Vue({
     },
     watch: {
         colors: {
-            // コンソールで値を変更するとhandlerが呼ばれる
+            // コンソールでネストされた値を変更するとhandlerが呼ばれる
             handler: function(newValue, oldValue) {
                 console.log('Update!!')
+                console.log('new: %s, old: %s',
+                    JSON.stringify(newValue, null, '\t'),
+                    JSON.stringify(oldValue, null, '\t'))
             },
             // falseにするとネストされた値の変更は監視されない＝Update!!表示されない
-            deep: false // deepオプション
+            deep: true,
+            immediate: true // 初期読み込みでwatchプロパティ実行される
         }
     }
 })
