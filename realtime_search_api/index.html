@@ -1,0 +1,34 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>リアルタイム検索 Vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>qiitaリアルタイム検索API</h1>
+<div id="app">
+    <p>
+        <input type="text" v-model="keyword">
+    </p>
+    <p>
+        {{ message }}
+    </p>
+    <ul>
+        <li v-for="item in items">
+            <!-- 属性に代入するときはv-bind -->
+            <a v-bind:href="item.url" target="_blank">{{ item.title }}</a> like:{{ item.likes_count }}
+        </li>
+    </ul>
+    <pre>{{ $data }}</pre>
+    <hr>
+</div>
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

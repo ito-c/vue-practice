@@ -78,7 +78,7 @@ var deep = new Vue({
     el: '#deep',
     data: {
         colors: [
-            { name: 'Reed' },
+            { name: 'Red' },
             { name: 'Green' },
             { name: 'Blue' }
         ]
