@@ -1,0 +1,120 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>クラスとスタイルのデータバインディング Vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>クラスとスタイルのデータバインディング</h1>
+<div id="app">
+    <p>
+        Hello <span class="bg-gray text-blue" v-bind:class="{large:isLarge, 'text-danger':hasError}">Vue.js</span>
+    </p>
+    <div>
+        <p>
+            v-bind:class="{large:isLarge}" クラス名:プロパティ名（isLarge）<br>
+            -> trueの場合はクラスが適用、falseの場合は適用されない
+        </p>
+        <p>
+            カンマ区切りで複数のクラスを動的に切り替えることも可能。<br>
+            -> v-bind:class="{large:isLarge, 'text-danger': hasError}" ※クラス名にハイフンが入る場合は、シングルクオート必要なことに留意
+        </p>
+        <p>
+            プレーンな（通常のクラス指定）クラスと組み合わせも可能。<br>
+            class="bg-gray text-blue" v-bind:class="{large:isLarge, 'text-danger':hasError}"
+            <br>競合するCSSを当てる場合、上書きされるか、マージされるが、基本的には後から読み込まれたものが優先される
+        </p>
+    </div>
+    <hr>
+    <pre>{{ $data }}</pre>
+    <hr>
+</div>
+
+
+<h1>配列構文によるクラスのデータバインディング</h1>
+<div id="appArr">
+    Hello <span v-bind:class="[largeClass, dangerClass]">Vue.js</span>
+    <div>
+        <p>
+            配列形式でクラスのデータバインディングを行うことも可能<br>
+            v-bind:class="[largeClass, dangerClass]"<br>
+            ->jsのdataプロパティ名でクラスを渡している
+            data: {
+                largeClass: 'large',,,,<br>
+        </p>
+    </div>
+    <hr>
+</div>
+
+
+
+<h1>objによるデータバインディング</h1>
+<div id="appObj">
+    <p>
+        Hello <span v-bind:class="classObject">Vue.js!</span>
+    </p>
+    <div>
+        <p>
+            オブジェクトでバインディングすることでスッキリと書ける
+        </p>
+    </div>
+    <hr>
+</div>
+
+
+<h1>クラスの条件に三項演算子を使う</h1>
+<div id="appIf">
+    <p>
+        Hello <span v-bind:class="[isLarge ? largeClass : '', dangerClass]">Vue.js!</span>
+    </p>
+    <div>
+        <p>
+            三項演算子を使うことで条件文が書ける。<br>
+            三項演算子の結果に関わらず、クラスを当てることも可能。[]で囲み、三項演算子後にカンマでクラス名を記載する<br>
+            v-bind:class="[isLarge ? largeClass : '', dangerClass]
+        </p>
+    </div>
+    <hr>
+</div>
+
+
+
+<h1>インラインスタイルのデータバインディング</h1>
+<div id="appIn">
+    <p>
+        Hello <span v-bind:style="{ color: color, fontSize: fontSize + 'px' }">Vue.js!</span>
+    </p>
+    <div>
+        <p>
+            中括弧で囲う。CSSのプロパティ名はキャメルケースにする必要がある。<br>
+            { color: color, fontSize: fontSize + 'px' } コロン後がバインディングされているプロパティ名
+        </p>
+    </div>
+    <hr>
+</div>
+
+
+
+<h1>インラインスタイルのデータバインディングにオブジェクトデータ</h1>
+<div id="appInObj">
+    <p>
+        Hello <span v-bind:style="styleObject">Vue.js!</span>
+    </p>
+    <div>
+        <p>
+            objによるデータバインディングと同様の書き方
+        </p>
+    </div>
+    <hr>
+</div>
+
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
