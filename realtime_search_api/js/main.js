@@ -19,6 +19,7 @@ new Vue({
     },
     methods: {
         getAnswer: function() {
+            // もし入力欄が空であれば
             if(this.keyword === '') {
                 this.items = null
                 this.message = ''
@@ -29,7 +30,9 @@ new Vue({
             var vm = this
             var params = { page: 1, per_page: 20, query: this.keyword }
             axios.get('https://qiita.com/api/v2/items', { params })
+            // APIからの戻り値response
             .then(function(response) {
+                // デバッグ用
                 console.log(response)
                 vm.items = response.data
             })
