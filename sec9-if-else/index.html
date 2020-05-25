@@ -1,0 +1,108 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>条件付きレンダリング Vue.js</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>条件付きレンダリング v-if v-else</h1>
+<h3>真偽値により要素の表示と非表示を切り替えることができる</h3>
+<div id="app">
+    <p v-if="toggle">
+        YES
+    </p>
+    <p v-else>
+        NO
+    </p>
+
+    <div>
+        <p>
+            dataプロパティにtoggleを定義<br>
+            v-elseはifの直後である必要がある
+        </p>
+    </div>
+<hr>
+</div>
+
+
+
+<h3>v-else-if</h3>
+<div id="appElse">
+    <p v-if="color === 'red'">
+        Stop
+    </p>
+    <p v-else-if="color === 'yellow'">
+        Caution
+    </p>
+    <p v-else-if="color === 'blue'">
+        Go
+    </p>
+    <p v-else>
+        Not red/yellow/blue
+    </p>
+
+    <div>
+        <p>
+            当てはまらない＝v-else <br>
+            v-else-ifは複数使用可能
+        </p>
+    </div>
+<hr>
+</div>
+
+
+
+<h3>v-show</h3>
+<div id="appShow">
+    <p v-show="toggle">
+        Hello! vuejs!
+    </p>
+    <!-- <p v-else>
+        good bye
+    </p> -->
+
+    <div>
+        <p>
+            v-showはcssのdisplayレベルで表示非表示が変わる（v-ifはDOMレベルで非表示）<br>
+            v-elesはv-showで使用できない
+        </p>
+    </div>
+<hr>
+</div>
+
+
+<h2>v-ifとv-showの違い</h2>
+<div>
+    <h3>v-if</h3>
+    <p>
+        要素をDOMから削除、追加<br>
+        高い切り替えコスト<br>
+        v-else、v-else-ifが使える
+    </p>
+    <p>
+        実行時に条件を変更することがほとんどない時に使う    
+    </p>
+    
+
+    <h3>v-show</h3>
+    <p>
+        CSS displayプロパティでの表示非表示制御<br>
+        高い初期描画コスト<br>
+        v-else、v-else-ifが使えない
+    </p>
+    <p>
+        表示非表示を多く利用する時に使う
+    </p>
+    
+    
+</div>
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
