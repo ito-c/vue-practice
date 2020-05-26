@@ -1,0 +1,203 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>フォーム入力バインディング</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>フォーム入力バインディング</h1>
+<div id="appA">
+    <p>
+        {{ message }}
+    </p>
+
+    <input type="text" v-model="message" value="hoge">
+
+    <pre>{{ $data }} </pre>
+
+    <div class="memo">
+        <p>v-model利用時はvalue、checked、selectedなどの属性は無視される。->チェックボックスでは使えている。。</p>
+
+    </div>
+<hr>
+</div>
+
+
+<h2>複数行テキスト</h2>
+<div id="appB">
+    <pre>{{ message }}</pre>
+    <!-- <textarea>{{ message }}</textarea> -->
+    <textarea v-model="message">{{ message }}</textarea>
+
+    <pre>{{ $data }} </pre>
+
+    <div class="memo">
+        <p>textareaではマスタッシュではなくv-modelを使用する</p>
+    </div>
+<hr>
+</div>
+
+
+
+
+<h2>単体のチェックボックス</h2>
+<div id="appC">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+
+    <pre>{{ $data }}</pre>
+
+    <div class="memo">
+        <p>idは特に指定しなくても良さそう？</p>
+        <p>単体のチェックボックス・・・boolean値（複数は配列）</p>
+    </div>
+<hr>
+</div>
+
+
+
+<h2>複数のチェックボックス</h2>
+<div id="appD">
+    <input type="checkbox" id="red" value="Red" v-model="colors">
+    <label for="red">Red</label>
+
+    <input type="checkbox" id="green" value="Greenaaaa" v-model="colors">
+    <label for="green">Green</label>
+
+    <input type="checkbox" id="blue" value="Blue" v-model="colors">
+    <label for="blue">Blue</label>
+
+    <pre>{{ $data }}</pre>
+
+    <div class="memo">
+        <p>複数の場合はデータプロパティに配列を用意し、v-modelで指定する</p>
+        <p>各チェックボックスに指定したvalueが配列に格納されていく。チェックボックスのidとlabelの指定についてはおまじない？label指定でクリックの範囲が広がる</p>
+    </div>
+<hr>
+</div>
+
+
+
+<h2>ラジオボタン</h2>
+<div id="appE">
+    <input type="radio" id="redRadio" value="Red" v-model="color">
+    <label for="redRadio">Red</label>
+
+    <input type="radio" id="greenRadio" value="Green" v-model="color">
+    <label for="greenRadio">green</label>
+
+    <input type="radio" id="blueRadio" value="Blue" v-model="color">
+    <label for="blueRadio">Blue</label>
+
+    <pre>{{ color }} </pre>
+
+    <div class="memo">
+        <p>ラジオボタンのデフォルトの値の型は文字列</p>
+        <p>label指定でクリックの範囲が広がる</p>
+    </div>
+<hr>
+</div>
+
+
+
+<h2>単体のセレクトボックス</h2>
+<div id="appF">
+    <select v-model="selected">
+        <option disabled>Please select one</option>
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+    </select>
+    {{ selected }}
+
+    <pre>{{ $data }}</pre>
+    
+    <div class="memo">
+        <p>セレクトボックスの単体選択のデフォルトの値の型は文字列</p>
+    </div>
+<hr>
+</div>
+
+
+<h2>複数のセレクトボックス</h2>
+<div id="appG">
+    <select v-model="selectedMulti" multiple>
+        <option disabled>Please select one</option>
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+    </select>
+    {{ selectedMulti }}
+
+    <pre>{{ $data }}</pre>
+    
+    <div class="memo">
+        <p>セレクトボックスの複数選択のデフォルトの値の型は配列</p>
+    </div>
+<hr>
+</div>
+
+
+<h2>修飾子 .lazy</h2>
+<div id="appH">
+    <input type="text" v-model.lazy="message">
+
+    <p>{{ message }}</p>
+    
+    <div class="memo">
+        <p>v-modelに.lazyを加えると、即時にバインドされなくなる。「変更の検知に対して怠惰」</p>
+        <p>"lazyを使えば、inputが変更されるたびではなく、inputの変更が終わった後に一回だけ重い処理が実行されることになります。
+        使いどころとしては、このようなあまり頻繁に実行したくないような処理の場合にlazyが使用できるかと思います。"
+    </p>
+    </div>
+<hr>
+</div>
+
+
+<h2>修飾子 .trim</h2>
+<div id="appI">
+    <p>
+        <input type="text" v-model.trim="message">
+    </p>
+    <p>
+        <input type="text" v-model="message">
+    </p>
+    <pre>{{ $data }}</pre>
+    
+    <div class="memo">
+    <p>
+        入力値から前後のスペースを取り除き、データに代入する
+    </p>
+    </div>
+<hr>
+</div>
+
+
+<h2>修飾子 .number</h2>
+<div id="appJ">
+    <p>
+        <!-- <input type="number" v-model="age"> -->
+        <input type="number" v-model.number="age">
+    </p>
+    {{ age + 10 }}
+
+    <pre>{{ $data }}</pre>
+    
+    <div class="memo">
+    <p>
+        HTMLのinput要素のvalueは、type属性にnumberを指定していても、常に文字列を返してしまう。->v-model.numberで解決
+    </p>
+    </div>
+<hr>
+</div>
+
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
