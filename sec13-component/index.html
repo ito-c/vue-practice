@@ -1,0 +1,99 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>コンポーネント</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>コンポーネント</h1>
+<h2>グローバル登録</h2>
+<div id="app">
+    <hello-component-g></hello-component-g>
+    <hello-component-g></hello-component-g>
+    <hello-component-g></hello-component-g>
+
+    <div class="memo">
+    <p>
+        vue-componentメソッドによるコンポーネント定義はグローバル登録と呼ばれ、全てのvueインスタンスから利用できる。コンポーネント名をview側にタグとして記載し使用
+    </p>
+    <p>定義はインスタンスが作成される前に行う</p>
+    </div>
+<hr>
+</div>
+
+
+
+<h2>ローカル登録</h2>
+<div id="appA">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+
+    <div class="memo">
+    <p>
+        jsファイルの変数にtemplateを代入し、vueインスタンス内でcomponentsを定義することで、ローカル登録ができる。view使用方法はグローバルと同じく、タグとして利用
+    </p>
+    <p>定義はインスタンスが作成される前に行う</p>
+    </div>
+<hr>
+</div>
+
+
+
+<div>
+    <p>コンポーネント名はハイフンを一つ以上含むケバブケースにする</p>
+    <ul>
+        <li>
+            hello-component・・・OK
+        </li>
+        <li>
+            button-counter・・・OK
+        </li>
+        <li>
+            hello・・・NG
+        </li>
+        <li>
+            helloComponent・・・NG
+        </li>
+    </ul>
+</div>
+
+
+
+<h2>オプション</h2>
+<div id="appB">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+
+
+    <div class="memo">
+    <p>
+        それぞれが独自にデータを保持する。コンポーネントを作成する度に、新しいインスタンスが作成される。</p>
+        <p>コンポーネントは再利用可能なvueインスタンス。methodsやデータ、コンピューテッド、ウオッチなどのnew vueする場合と同じオプションを利用可能。</p>
+        <p>例外はelのようなルート固有のオプション</p>
+        <hr>
+
+        <h2>注意</h2>
+        <p>1.コンポーネントにおけるdataの指定方法について、関数である必要がある。直接、オブジェクトとして定義できない。</p>
+        <p>2.テンプレートの要素は単一である必要がある。</p>
+        <p>
+            ×　template: <pre>'&lt;span>count: &lt;/span>&lt;button v-on:click="count++">{ { count }}&lt;/button>'</pre>
+        </p>
+        <p>二つ以上使用する場合、divタグで囲う必要がある</p>
+        <p>
+            ○　template: <pre>'&lt;div>&lt;span>count: &lt;/span>&lt;button v-on:click="count++">{ { count }}&lt;/button>&lt;/div>'</pre>
+        </p>
+    </div>
+<hr>
+</div>
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
