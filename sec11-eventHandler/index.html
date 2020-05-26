@@ -1,0 +1,115 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>イベントハンドラ</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>イベントハンドラー</h1>
+<div id="app">
+    <p>
+        {{ message }}
+    </p>
+    
+    <!-- メソッドイベントハンドラ -->
+    <button v-on:click="clickHandler($event,'Vue.js')">
+        click
+    </button>
+
+    <!-- インラインメソッドハンドラ
+    <button v-on:click="counter++">
+        click
+    </button> -->
+
+    <div class="memo">
+        <p>
+            v-on:click=では、メソッドだけでなく、直接データプロパティを指定（counter）し、クリックされる度に++で足していくインライン方式も使える<br>
+            vueインスタンスのメソッドに引数を指定することで、eventオブジェクトが取得できる。tagName＝BUTTONとかinnerHTML＝clickとか取得できるようになる<br>
+            <br>
+            引数をイベントハンドラに渡すことも可能。メソッド名後に()で指定。引数を渡した場合、vueインスタンスのメソッドではeventオブジェクトではなく引数として受け取る。<br>
+            両方受け取る場合、$eventを明示的に記載し、フロントとvueインスタンスの両方の第一引数に書く -> "clickHandler($event,'Vue.js')"、clickHandler: function($event, aaa)
+        </p>
+    </div>
+<hr>
+</div>
+
+
+<h2>イベント修飾子</h2>
+<div id="appOnce">
+    <button v-on:click.once="clickHandler">
+        now!
+    </button>
+    <p>
+        {{ message }}
+    </p>
+    <div class="memo">
+        <p>
+            イベント修飾子で、イベントハンドラの制御が可能。v-on:click.once="clickHandler" clickの後ろにイベント修飾子.onceを記述し、一度だけ動作するようにした
+        </p>
+    </div>
+<hr>
+</div>
+
+
+
+<h2>キー修飾子</h2>
+<div id="appKeyup">
+    <!-- エスケープキーを指定 -->
+    <!-- <input type="text" v-on:keyup.27="clear" v-model="input"> -->
+    <input type="text" v-on:keyup.esc.up="clear" v-model="input">
+    <p>
+        {{ input }}
+    </p>
+
+    <div class="memo">
+        <p>
+            v-on＝esc押されたらclearメソッド。v-modelで双方向データバインディング。<br>
+            escなど、キー番号のエイリアスもある。<br>
+            orも指定可能　.で繋げる
+        </p>
+    </div>
+<hr>
+</div>
+
+
+
+
+<h2>システム修飾子</h2>
+<div id="appSys">
+    <!-- ctrl + c -->
+    <input type="text" v-on:keyup.ctrl.67="clear" v-model="input">
+    <p>
+        {{ input }}
+    </p>
+
+
+    <div v-on:click.shift="clickHandler">
+        shift + click me!!
+    </div>
+
+    <div @click.shift="clickHandler">
+        @ shift + click me!!
+    </div>
+
+
+    <div class="memo">
+        <p>
+            ctrl＝システム修飾子 .で繋げると同時押し。<br>
+            v-on:click.shift="clickHandler"　clickに続けて.shiftを指定することで、shift押しながらクリックした際にメソッドが呼ばれる<br><br>
+            v-on:の省略で@が使用可能
+        </p>
+    </div>
+<hr>
+</div>
+
+
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
