@@ -1,0 +1,44 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>トランジション</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>トランジション</h1>
+<div id="app">
+    <button v-on:click="show=!show">
+        Change!
+    </button>
+    <transition>
+        <p v-if="show">
+        <!-- <p v-show="show"> -->
+            Hello transition
+        </p>
+    </transition>
+    <div class="memo">
+    <p>
+        v-on:click="show=!show"でボタン押す度にtrueとfalseの入れ替え
+    </p>
+    <p>vuejsにはtransitionクラスがあり、トランジション効果を当てたい要素をtransitionタグで囲むだけで、トランジション用のクラスが使用できる</p>
+    <p>トランジションクラスに対してCSSを適用させれば、切り替わりのタイミングでトランジションが適用される。クラス名はv-enter-activeとv-enter-to
+    </p>
+    <p>v-show、もしくはv-if（どちらでも動作可能）で表示・削除される時にそれぞれ、transitionで囲んだp要素にv-enter-active、v-leave-activeクラスが追加される</p>
+    <ul>
+        <li>追加（表示）・・・enter</li>
+        <li>削除（非表示）・・・leave</li>
+    </ul>
+    </div>
+<hr>
+</div>
+
+
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
