@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue Router</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/top">Go to Top</router-link>
+        <router-link to="/users/123">Go to User</router-link>
+        <router-view></router-view>
+    </div>
+
+    <div class="memo">
+        <p>
+            パラメータで渡された値を使うには、pathに/:userIdを追加する。userIdという名前でURLパラメーターの値を利用できるようになる。router-linkのtoに/123を追加し、テストする
+        </p>
+        <p>
+            渡された値を取り出して画面に表示するには・・・templateに{{  }}で追記する。{{}}内には$route.params.userIdを追記する。
+        </p>
+
+    </div>
+    <script src="https://unpkg.com/vue@2.6.10"></script>
+    <script src="https://unpkg.com/vue-router@3.0.6"></script>
+    <script>
+        // ページごとのコンポーネントの作成
+        const Top = { template: '<div>Topaaaaa</div>'}
+        const User = { template: '<div>User {{ $route.params.userId }}</div>'}
+
+        // Routerインスタンスの生成、routesオプションにルート定義を記述・URLとコンポーネントを紐付け
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: '/top',
+                    component: Top
+                },
+                {
+                    path: '/users/:userId',
+                    component: User
+                }
+            ]
+        })
+
+        const app = new Vue({
+            router: router
+            // Routerインスタンス、vueインスタンスへ定義を渡す
+            // router　-> 短縮表記も可能
+        }).$mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue Router</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/top">Go to Top</router-link>
+        <router-link to="/users">Go to User</router-link>
+        <router-view></router-view>
+    </div>
+
+
+
+
+    <div class="memo">
+        <p>
+            router-linkは、vue-routerが読み込まれている時に使えるコンポーネント。ユーザーのナビゲーションを有効にするためのもの。対象とするロケーションは「to="/***"」で指定する。レンダリングされるとaタグになる。
+        </p>
+        <p>
+            router-viewの部分に、ルート定義とマッチした各ページのコンテンツとなるコンポーネントが描画される。
+        </p>
+        <p>
+            ページリロードは発生しない。ページ内の必要な要素のみ更新される
+        </p>
+
+    </div>
+    <script src="https://unpkg.com/vue@2.6.10"></script>
+    <script src="https://unpkg.com/vue-router@3.0.6"></script>
+    <script>
+        // ページごとのコンポーネントの作成
+        const Top = { template: '<div>Topaaaaa</div>'}
+        const User = { template: '<div>User</div>'}
+
+        // Routerインスタンスの生成、routesオプションにルート定義を記述・URLとコンポーネントを紐付け
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: '/top',
+                    component: Top
+                },
+                {
+                    path: '/users',
+                    component: User
+                }
+            ]
+        })
+
+        const app = new Vue({
+            router: router // Routerインスタンス、vueインスタンスへ定義を渡す
+            // router　-> 短縮表記も可能
+        }).$mount('#app')
+    </script>
+</body>
+</html>
